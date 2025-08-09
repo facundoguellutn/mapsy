@@ -32,9 +32,9 @@ const QuickAction: React.FC<QuickActionProps> = ({
     className="bg-card border border-border rounded-xl p-4 mr-4"
     style={{ width: width * 0.7 }}
   >
-    <View className="flex-row items-center space-x-3 mb-3">
+    <View className="flex-row items-center mb-3">
       <View 
-        className="w-12 h-12 rounded-full items-center justify-center"
+        className="w-12 h-12 rounded-full items-center justify-center mr-3"
         style={{ backgroundColor: color }}
       >
         {icon}
@@ -234,8 +234,8 @@ export default function HomeScreen() {
           </Text>
           
           <View className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-            <View className="flex-row items-start space-x-3">
-              <View className="w-8 h-8 bg-blue-500 rounded-full items-center justify-center mt-1">
+            <View className="flex-row items-start">
+              <View className="w-8 h-8 bg-blue-500 rounded-full items-center justify-center mr-3 mt-1">
                 <Ionicons name="bulb" size={16} color="white" />
               </View>
               <View className="flex-1">

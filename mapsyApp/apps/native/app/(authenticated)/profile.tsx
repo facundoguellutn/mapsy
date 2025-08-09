@@ -32,8 +32,8 @@ const ProfileItem: React.FC<ProfileItemProps> = ({
     className="bg-card border border-border rounded-lg p-4 mb-3"
   >
     <View className="flex-row items-center justify-between">
-      <View className="flex-row items-center space-x-3">
-        <View className={`w-10 h-10 rounded-full items-center justify-center ${
+      <View className="flex-row items-center flex-1">
+        <View className={`w-10 h-10 rounded-full items-center justify-center mr-3 ${
           danger ? 'bg-red-100' : 'bg-primary/10'
         }`}>
           {icon}
@@ -52,11 +52,13 @@ const ProfileItem: React.FC<ProfileItemProps> = ({
         </View>
       </View>
       {showChevron && (
-        <Ionicons 
-          name="chevron-forward" 
-          size={20} 
-          color={danger ? "#DC2626" : "#6B7280"} 
-        />
+        <View className="ml-2">
+          <Ionicons 
+            name="chevron-forward" 
+            size={20} 
+            color={danger ? "#DC2626" : "#6B7280"} 
+          />
+        </View>
       )}
     </View>
   </TouchableOpacity>

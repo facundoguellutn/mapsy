@@ -2,10 +2,23 @@ import { Drawer } from "expo-router/drawer";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { HeaderButton } from "@/components/header-button";
 import { Link } from "expo-router";
+import { Platform } from "react-native";
 
 export default function AuthenticatedLayout() {
   return (
-    <Drawer>
+    <Drawer
+      screenOptions={{
+        headerStyle: {
+          elevation: 0, // Remove shadow on Android
+          shadowOpacity: 0, // Remove shadow on iOS
+          borderBottomWidth: 1,
+          borderBottomColor: '#f0f0f0',
+        },
+        drawerIcon: ({ size, color }) => (
+          <Ionicons name="menu" size={24} color={color} />
+        ),
+      }}
+    >
       <Drawer.Screen
         name="home"
         options={{
