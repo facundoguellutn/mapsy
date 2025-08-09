@@ -53,15 +53,27 @@ app.use(
 
 app.use(express.json());
 
+// Add logging middleware for all requests
+app.use((req, _res, next) => {
+  console.log(`📨 ${req.method} ${req.path}`, {
+    contentType: req.headers['content-type'],
+    authorization: req.headers.authorization ? 'Bearer ***' : 'none',
+    contentLength: req.headers['content-length']
+  });
+  next();
+});
+
 // Routes
 app.use('/auth', appRouter.auth);
+app.use('/api/vision', appRouter.vision);
 
 app.get("/", (_req, res) => {
   res.status(200).json({ 
     message: "Mapsy API is running",
     version: "1.0.0",
     endpoints: {
-      auth: "/auth"
+      auth: "/auth",
+      vision: "/api/vision"
     }
   });
 });

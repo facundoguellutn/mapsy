@@ -74,6 +74,16 @@ export default function AuthenticatedLayout() {
           ),
         }}
       />
+      <Drawer.Screen
+        name="camera"
+        options={{
+          headerTitle: "Cámara",
+          drawerLabel: "Cámara",
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="camera-outline" size={size} color={color} />
+          ),
+        }}
+      />
     </Drawer>
   );
 }

@@ -10,12 +10,14 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
+    "@google-cloud/vision": "^5.3.3",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.0",
+    "multer": "^2.0.2",
     "zod": "^4.0.2"
   },
   "devDependencies": {
@@ -23,6 +25,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
     "@types/node": "^22.13.11",
     "tsdown": "^0.12.9",
     "tsx": "^4.19.2",

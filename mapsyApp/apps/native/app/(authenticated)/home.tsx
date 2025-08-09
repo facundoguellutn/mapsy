@@ -9,6 +9,7 @@ import {
 import { Container } from '@/components/container';
 import { useAuth } from '@/contexts/AuthContext';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 
@@ -90,8 +91,7 @@ export default function HomeScreen() {
   };
 
   const handleTakePhoto = () => {
-    // TODO: Navigate to camera screen
-    console.log('Take photo');
+    router.push('/(authenticated)/camera');
   };
 
   const handleExploreNearby = () => {

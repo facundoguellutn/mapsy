@@ -65,6 +65,9 @@ if (__DEV__) {
   console.log('🔧 Constants.expoConfig:', (Constants as any).expoConfig);
 }
 
+// Export the resolved URL for direct use
+export { API_BASE_URL };
+
 // Zod schemas for validation (matching backend)
 export const RegisterSchema = z.object({
   email: z.string().email('Email must be valid'),
@@ -120,15 +123,6 @@ class ApiClient {
   ): Promise<ApiResponse<T>> {
     const url = `${this.baseURL}${endpoint}`;
     
-    // Debug logging
-    if (__DEV__) {
-      console.log(`🌐 API ${options.method || 'GET'} ${endpoint} -> ${url}`);
-      console.log('🌐 Headers:', headers);
-      if (options.body) {
-        console.log('🌐 Body:', options.body);
-      }
-    }
-    
     const token = await getToken();
     const mergedFromOptions =
       options.headers instanceof Headers
@@ -141,6 +135,15 @@ class ApiClient {
 
     if (token) {
       headers.Authorization = `Bearer ${token}`;
+    }
+    
+    // Debug logging
+    if (__DEV__) {
+      console.log(`🌐 API ${options.method || 'GET'} ${endpoint} -> ${url}`);
+      console.log('🌐 Headers:', headers);
+      if (options.body) {
+        console.log('🌐 Body:', options.body);
+      }
     }
 
     const controller = new AbortController();
