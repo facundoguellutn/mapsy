@@ -85,11 +85,43 @@ mapsyApp/
 - **Configuración de desarrollo** con hot reload
 - **Theming** (dark/light mode) en ambas apps
 - **TypeScript** configurado en todos los proyectos
+- **🆕 Sistema de autenticación completo**:
+  - Backend: JWT (7 días), bcrypt, endpoints (register, login, logout, me, onboarding)
+  - Frontend: AuthContext, secure storage, validación Zod
+  - Pantallas: Login, Register con formularios completos
+- **🆕 Flujo de onboarding completo** (4 pantallas):
+  - Welcome, Features, Permissions, Ready
+  - Integración con permisos de cámara y ubicación
+- **🆕 Pantalla Home principal**:
+  - Dashboard con acciones rápidas
+  - Stats de usuario, tips, estado vacío
+- **🆕 Navigation y routing inteligente**:
+  - Redirección automática según estado de auth/onboarding
+  - Drawer navigation con 5 secciones
+- **🆕 Gestión de estado y almacenamiento**:
+  - Secure storage para tokens y datos de usuario
+  - Context API con reducers para auth
+- **🆕 Funcionalidades de autenticación funcionando**:
+  - Registro y login con feedback visual
+  - Navegación automática y manual de respaldo
+  - Manejo de errores y validación completa
+- **🆕 SafeArea y UI mejorada**:
+  - SafeAreaProvider configurado en toda la app
+  - Container component con react-native-safe-area-context
+  - Edges configurables para diferentes layouts
+- **🆕 Onboarding completamente funcional**:
+  - 4 pantallas con navegación fluida
+  - Botón "Comenzar a explorar" redirige correctamente
+  - Estados y permisos manejados correctamente
 
 #### 🔄 En Desarrollo Base
 - Componentes UI básicos (Container, HeaderButton, TabBarIcon)
-- Estructura de routing preparada para funcionalidades principales
-- Database schema (aún no definido)
+- Pantallas placeholder (Explore, Favorites, History, Profile)
+- Validación Zod en frontend y backend
+- **🔄 Mejoras de UI en proceso**:
+  - Layout de botones de navegación
+  - Espaciado consistente entre elementos
+  - Integración de tipografía Bricolage Grotesque
 
 #### ⏳ Pendiente de Implementar
 
@@ -151,7 +183,28 @@ El proyecto está configurado para MongoDB. Variables de entorno necesarias en `
 DATABASE_URL=mongodb://localhost:27017/mapsy
 CORS_ORIGIN=http://localhost:3001
 PORT=3000
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 ```
+
+### Cómo Probar la Aplicación
+
+1. **Configurar MongoDB**: Asegúrate de tener MongoDB corriendo localmente
+2. **Crear archivo .env**: Copia `.env.example` a `.env` en `apps/server/`
+3. **Instalar dependencias**: `npm install` en la raíz del proyecto
+4. **Iniciar desarrollo**: `npm run dev` para todos los servicios
+5. **Probar flujo completo**:
+   - Registro de usuario nuevo
+   - Flujo de onboarding completo (4 pasos)
+   - Navegación en la app principal
+
+### Endpoints API Disponibles
+
+**Autenticación** (`/auth`):
+- `POST /auth/register` - Registrar usuario
+- `POST /auth/login` - Iniciar sesión  
+- `GET /auth/me` - Obtener usuario actual
+- `PATCH /auth/onboarding` - Actualizar estado de onboarding
+- `POST /auth/logout` - Cerrar sesión
 
 ### Próximos Pasos de Desarrollo
 
