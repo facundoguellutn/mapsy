@@ -66,6 +66,7 @@ app.use((req, _res, next) => {
 // Routes
 app.use('/auth', appRouter.auth);
 app.use('/api/vision', appRouter.vision);
+app.use('/api/chat', appRouter.chat);
 
 app.get("/", (_req, res) => {
   res.status(200).json({ 
@@ -73,7 +74,8 @@ app.get("/", (_req, res) => {
     version: "1.0.0",
     endpoints: {
       auth: "/auth",
-      vision: "/api/vision"
+      vision: "/api/vision",
+      chat: "/api/chat"
     }
   });
 });

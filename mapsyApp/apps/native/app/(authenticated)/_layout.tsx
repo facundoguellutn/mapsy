@@ -84,6 +84,33 @@ export default function AuthenticatedLayout() {
           ),
         }}
       />
+      <Drawer.Screen
+        name="chat-setup"
+        options={{
+          headerTitle: "Nuevo Chat",
+          drawerLabel: "Chat Turístico",
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="chatbubble-ellipses-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="chat-history"
+        options={{
+          headerTitle: "Historial de Chats",
+          drawerLabel: "Mis Chats",
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="chatbubbles-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="chat"
+        options={{
+          drawerItemStyle: { display: 'none' },
+          headerShown: false,
+        }}
+      />
     </Drawer>
   );
 }

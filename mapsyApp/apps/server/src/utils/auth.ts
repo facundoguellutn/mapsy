@@ -16,6 +16,22 @@ export interface AuthRequest extends Request {
   user?: JWTPayload;
 }
 
+export interface AuthenticatedRequest extends Request {
+  user?: {
+    _id: string;
+    email: string;
+    name: string;
+    avatar?: string;
+    preferences: {
+      language: 'es' | 'en' | 'fr' | 'de' | 'pt';
+      theme: 'light' | 'dark' | 'system';
+    };
+    onboardingCompleted: boolean;
+    createdAt: Date;
+    lastLogin?: Date;
+  };
+}
+
 // Hash password
 export const hashPassword = async (password: string): Promise<string> => {
   return bcrypt.hash(password, 12);

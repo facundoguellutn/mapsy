@@ -128,10 +128,13 @@ class ApiClient {
       options.headers instanceof Headers
         ? Object.fromEntries(options.headers.entries())
         : (options.headers as Record<string, string> | undefined);
+    const isFormData = typeof FormData !== 'undefined' && options.body instanceof FormData;
     const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
       ...(mergedFromOptions ?? {}),
     };
+    if (!isFormData && !('Content-Type' in headers)) {
+      headers['Content-Type'] = 'application/json';
+    }
 
     if (token) {
       headers.Authorization = `Bearer ${token}`;
@@ -251,6 +254,54 @@ class ApiClient {
   async healthCheck(): Promise<ApiResponse> {
     return this.request('/health', {
       method: 'GET',
+    });
+  }
+
+  // Generic HTTP methods for flexibility
+  async get<T>(endpoint: string): Promise<ApiResponse<T>> {
+    return this.request<T>(endpoint, {
+      method: 'GET',
+    });
+  }
+
+  async post<T>(endpoint: string, data?: any, options?: RequestInit): Promise<ApiResponse<T>> {
+    const mergedOptions = {
+      method: 'POST',
+      ...options,
+    };
+
+    if (data instanceof FormData) {
+      // Remove Content-Type header for FormData to let browser set it with boundary
+      const headers = mergedOptions.headers instanceof Headers 
+        ? Object.fromEntries(mergedOptions.headers.entries())
+        : (mergedOptions.headers as Record<string, string> | undefined) || {};
+      delete headers['Content-Type'];
+      mergedOptions.headers = headers;
+      mergedOptions.body = data;
+    } else if (data) {
+      mergedOptions.body = JSON.stringify(data);
+    }
+
+    return this.request<T>(endpoint, mergedOptions);
+  }
+
+  async put<T>(endpoint: string, data?: any): Promise<ApiResponse<T>> {
+    return this.request<T>(endpoint, {
+      method: 'PUT',
+      body: data ? JSON.stringify(data) : undefined,
+    });
+  }
+
+  async patch<T>(endpoint: string, data?: any): Promise<ApiResponse<T>> {
+    return this.request<T>(endpoint, {
+      method: 'PATCH',
+      body: data ? JSON.stringify(data) : undefined,
+    });
+  }
+
+  async delete<T>(endpoint: string): Promise<ApiResponse<T>> {
+    return this.request<T>(endpoint, {
+      method: 'DELETE',
     });
   }
 }

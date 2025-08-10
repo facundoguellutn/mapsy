@@ -100,13 +100,11 @@ export default function HomeScreen() {
   };
 
   const handleAskQuestion = () => {
-    // TODO: Navigate to chat screen
-    console.log('Ask question');
+    router.push('/(authenticated)/chat-setup');
   };
 
   const handleViewFavorites = () => {
-    // TODO: Navigate to favorites screen
-    console.log('View favorites');
+    router.push('/(authenticated)/chat-history');
   };
 
   const handleRecentItemPress = (item: string) => {
@@ -157,7 +155,7 @@ export default function HomeScreen() {
             
             <QuickAction
               icon={<Ionicons name="chatbubble-ellipses" size={24} color="white" />}
-              title="Preguntarme"
+              title="Chat Turístico"
               description="Conversa con nuestra IA sobre cualquier lugar"
               color="#F59E0B"
               onPress={handleAskQuestion}
@@ -201,7 +199,7 @@ export default function HomeScreen() {
               Actividad Reciente
             </Text>
             <TouchableOpacity onPress={handleViewFavorites}>
-              <Text className="text-primary font-medium">Ver todo</Text>
+              <Text className="text-primary font-medium">Ver chats</Text>
             </TouchableOpacity>
           </View>
           

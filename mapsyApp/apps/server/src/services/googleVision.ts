@@ -80,7 +80,7 @@ export class GoogleVisionService {
 
       const textAnnotations = textDetectionResults[0].textAnnotations?.map(text => ({
         description: text.description || '',
-        locale: text.locale,
+        locale: text.locale ?? undefined,
       })) || [];
 
       return {
